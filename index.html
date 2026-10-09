@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f8f4ff">
+  <meta name="description" content="Veloura — thoughtfully selected finds for your everyday life.">
+  <title>Veloura — Smart Shopping</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="announcement">A little treat for you — use <strong>VELVET10</strong> for 10% off your order ✨</div>
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="Veloura home"><span class="brand-mark">v.</span><span>veloura</span></a>
+    <nav class="desktop-nav" aria-label="Main navigation">
+      <a href="#shop">Shop all</a><a href="#shop" data-nav-category="Fashion">Fashion</a><a href="#shop" data-nav-category="Beauty">Beauty</a><a href="#shop" data-nav-category="Lifestyle">Lifestyle</a>
+    </nav>
+    <div class="header-actions">
+      <a class="account-link" href="customer-login.html" title="Customer account">Account ↗</a>
+      <button class="icon-button" id="themeToggle" aria-label="Toggle dark mode" title="Toggle dark mode">☾</button>
+      <button class="icon-button wishlist-header" id="wishlistToggle" aria-label="Show wishlist" title="Wishlist">♡ <span id="wishlistCount" class="mini-count">0</span></button>
+      <button class="cart-header" id="openCart" aria-label="Open shopping cart"><span>Bag</span><span class="bag-icon">▱</span><span id="cartCount" class="cart-count">0</span></button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow"><span class="sparkle">✦</span> THE EVERYDAY EDIT</span>
+        <h1>Find your next<br><em>favourite.</em></h1>
+        <p>Thoughtfully selected pieces for your everyday life. Little luxuries, lovely prices, all in one place.</p>
+        <a class="primary-button" href="#shop">Explore collection <span>↗</span></a>
+        <div class="hero-proof"><div class="avatar-stack"><span>J</span><span>M</span><span>A</span></div><span>Loved by <strong>2,400+</strong> happy shoppers</span></div>
+      </div>
+      <div class="hero-art" aria-label="Decorative shopping illustration">
+        <div class="hero-orbit orbit-one"></div><div class="hero-orbit orbit-two"></div>
+        <div class="hero-card hero-card-back"><span>YOUR DAILY DOSE<br>OF LOVELY</span><span class="tiny-flower">✿</span></div>
+        <div class="hero-product">
+          <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=900&q=85" alt="Neutral everyday handbag">
+          <div class="floating-note"><span class="note-star">✦</span><span><strong>Little things.</strong><br>Big joy.</span></div>
+        </div>
+        <span class="hero-doodle doodle-one">✳</span><span class="hero-doodle doodle-two">✧</span>
+      </div>
+      <div class="hero-bottom-label"><span>01 / CURATED FOR YOU</span><span>SCROLL TO DISCOVER ↓</span></div>
+    </section>
+
+    <section class="benefit-strip" aria-label="Store benefits">
+      <div><span class="benefit-icon">♡</span><span><strong>Curated with care</strong><small>Good things only</small></span></div>
+      <div><span class="benefit-icon">✧</span><span><strong>Lovely little prices</strong><small>Everyday affordability</small></span></div>
+      <div><span class="benefit-icon">⌁</span><span><strong>Free shipping</strong><small>On orders over ₹1,999</small></span></div>
+      <div><span class="benefit-icon">↺</span><span><strong>Easy browsing</strong><small>Shop at your own pace</small></span></div>
+    </section>
+
+    <section class="shop-section section-wrap" id="shop">
+      <div class="section-heading">
+        <div><span class="eyebrow">A GOOD PLACE TO START</span><h2>Shop the <em>collection</em></h2></div>
+        <p>Pieces that make ordinary days feel<br class="desktop-only"> a little more special.</p>
+      </div>
+      <div class="shop-toolbar">
+        <label class="search-box"><span aria-hidden="true">⌕</span><input id="searchInput" type="search" placeholder="Search your next favourite..." aria-label="Search products"><kbd>⌘ K</kbd></label>
+        <label class="sort-control"><span>Sort by</span><select id="sortSelect" aria-label="Sort products"><option value="featured">Featured</option><option value="price-low">Price: low to high</option><option value="price-high">Price: high to low</option><option value="rating">Top rated</option><option value="newest">Newest first</option></select></label>
+      </div>
+      <div class="category-row" id="categoryFilters" aria-label="Product categories">
+        <button class="category-chip active" data-category="All">Everything <span>✦</span></button>
+        <button class="category-chip" data-category="Fashion">Fashion</button>
+        <button class="category-chip" data-category="Beauty">Beauty</button>
+        <button class="category-chip" data-category="Lifestyle">Lifestyle</button>
+        <button class="category-chip" data-category="Tech">Tech & gadgets</button>
+      </div>
+      <div class="results-line"><span id="resultsCount">Showing all finds</span><button id="clearFilters" class="text-button">Clear filters ↗</button></div>
+      <div id="productGrid" class="product-grid" aria-live="polite"></div>
+      <div id="emptyState" class="empty-state hidden"><span>☁</span><h3>No finds just yet</h3><p>Try another search or clear your filters.</p><button class="primary-button" id="resetSearch">Show all products</button></div>
+    </section>
+
+    <section class="recommend-section section-wrap" id="recommendationsSection">
+      <div class="recommend-heading"><div><span class="eyebrow">A LITTLE SOMETHING EXTRA</span><h2>You might <em>love these</em></h2></div><p>Picked from your current browsing.</p></div>
+      <div class="recommend-grid" id="recommendGrid"></div>
+    </section>
+
+    <section class="newsletter section-wrap">
+      <div class="newsletter-flower">✿</div><div><span class="eyebrow">LETTERS FROM VELOURA</span><h2>A little lovely in<br>your inbox.</h2><p>New finds, feel-good favourites and occasional treats.</p></div>
+      <form id="newsletterForm" class="newsletter-form"><label for="newsletterEmail">Your email address</label><div class="newsletter-input"><input id="newsletterEmail" type="email" placeholder="you@example.com" required><button type="submit" aria-label="Subscribe to newsletter">↗</button></div><small id="newsletterMessage">No spam, just the good stuff.</small></form>
+    </section>
+  </main>
+
+  <footer class="site-footer"><a class="brand" href="#"><span class="brand-mark">v.</span><span>veloura</span></a><p>Curated finds for your everyday life.</p><div class="footer-links"><a href="#shop">Shop</a><a href="#recommendationsSection">For you</a><button id="footerOrders">Order history</button><a href="manager-login.html">Manager portal ↗</a></div><small>© <span id="currentYear"></span> Veloura. A demo shopping experience.</small></footer>
+
+  <div class="overlay" id="overlay"></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Shopping cart" aria-hidden="true">
+    <div class="drawer-header"><div><span class="eyebrow">YOUR LITTLE TREASURES</span><h2>Your bag <span id="drawerItemCount">(0)</span></h2></div><button class="close-button" id="closeCart" aria-label="Close cart">×</button></div>
+    <div class="shipping-progress"><div class="shipping-copy"><span id="shippingMessage">You're just getting started!</span><strong id="shippingAmount">₹1,999 to free shipping</strong></div><div class="progress-track"><span id="shippingProgress"></span></div></div>
+    <div id="cartItems" class="cart-items"></div>
+    <div id="emptyCart" class="empty-cart"><span class="empty-bag">♡</span><h3>Your bag is taking a nap</h3><p>Find something lovely to bring it to life.</p><button class="primary-button" id="continueShopping">Explore finds</button></div>
+    <div class="cart-bottom" id="cartBottom">
+      <form id="couponForm" class="coupon-form"><label for="couponInput">Have a little code?</label><div><input id="couponInput" placeholder="Enter coupon code" autocomplete="off"><button type="submit">Apply</button></div><small id="couponMessage">Try VELVET10 or WELCOME150</small></form>
+      <div class="price-breakdown">
+        <div><span>Subtotal</span><strong id="subtotalValue">₹0</strong></div>
+        <div><span>Discount <span id="discountLabel"></span></span><strong id="discountValue" class="discount-text">−₹0</strong></div>
+        <div><span>Estimated tax (5%)</span><strong id="taxValue">₹0</strong></div>
+        <div><span>Shipping</span><strong id="shippingValue">₹0</strong></div>
+        <div class="total-row"><span>Total</span><strong id="totalValue">₹0</strong></div>
+        <small>Taxes and shipping are estimates for this demo.</small>
+      </div>
+      <button id="checkoutButton" class="checkout-button">Continue to checkout <span>→</span></button>
+      <p class="secure-note">♡ A thoughtful little shopping experience</p>
+    </div>
+  </aside>
+
+  <section class="modal" id="checkoutModal" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle" aria-hidden="true">
+    <div class="modal-header"><div><span class="eyebrow">ALMOST YOURS</span><h2 id="checkoutTitle">Delivery details</h2></div><button class="close-button" data-close-modal="checkoutModal" aria-label="Close checkout">×</button></div>
+    <div id="checkoutContent">
+      <div class="checkout-summary" id="checkoutSummary"></div>
+      <form id="checkoutForm" novalidate>
+        <div class="form-grid"><label>Full name<input name="fullName" required minlength="2" autocomplete="name" placeholder="Your full name"></label><label>Email address<input name="email" type="email" required autocomplete="email" placeholder="you@example.com"></label><label class="full-field">Phone number<input name="phone" type="tel" required pattern="[0-9+() -]{8,16}" autocomplete="tel" placeholder="+91 98765 43210"></label><label class="full-field">Delivery address<textarea name="address" required minlength="10" autocomplete="street-address" placeholder="House number, street, area..." rows="2"></textarea></label><label>City<input name="city" required autocomplete="address-level2" placeholder="Chennai"></label><label>PIN code<input name="pincode" required pattern="[0-9]{6}" inputmode="numeric" autocomplete="postal-code" placeholder="600001"></label></div>
+        <div class="payment-note"><span>♡</span><div><strong>Demo checkout</strong><p>No payment will be collected. This creates a sample order saved in your browser.</p></div></div>
+        <p class="form-error" id="checkoutError" role="alert"></p>
+        <button type="submit" class="checkout-button">Place demo order <span>→</span></button>
+      </form>
+    </div>
+    <div id="orderSuccess" class="order-success hidden"></div>
+  </section>
+
+  <section class="modal small-modal" id="ordersModal" role="dialog" aria-modal="true" aria-labelledby="ordersTitle" aria-hidden="true">
+    <div class="modal-header"><div><span class="eyebrow">YOUR LITTLE ARCHIVE</span><h2 id="ordersTitle">Order history</h2></div><button class="close-button" data-close-modal="ordersModal" aria-label="Close order history">×</button></div><div id="ordersContent"></div>
+  </section>
+  <div id="toastRegion" class="toast-region" aria-live="polite" aria-atomic="true"></div>
+</body>
+</html>

@@ -1,0 +1,3 @@
+"use strict";
+const form=document.querySelector("#managerLoginForm");
+form.addEventListener("submit",event=>{event.preventDefault();const data=new FormData(form);const email=String(data.get("email")).trim().toLowerCase();const password=String(data.get("password"));const message=document.querySelector("#managerLoginMessage");if(email==="manager@veloura.com"&&password==="Veloura@123"){localStorage.setItem("veloura_manager_session_v1",JSON.stringify({email,role:"manager",signedInAt:new Date().toISOString()}));location.href="manager-dashboard.html";}else{message.textContent="Those demo credentials don't match. Try the credentials shown below.";message.className="portal-message error";}});
